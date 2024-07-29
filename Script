@@ -1,6 +1,6 @@
 -- Create the main ScreenGui
 local gui = Instance.new("ScreenGui")
-gui.Name = "QGui"
+gui.Name = "QGui" --change the word to the letter you want
 gui.ResetOnSpawn = false -- Ensure the GUI doesn't disappear on reset
 gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
@@ -32,18 +32,18 @@ bottomFrame.Parent = frame
 
 -- Create the main button
 local cButton = Instance.new("TextButton")
-cButton.Name = "QButton"
+cButton.Name = "QButton" --change the word to the letter you want
 cButton.Size = UDim2.new(0, 50, 0, 50)
 cButton.Position = UDim2.new(0.5, -25, 0.5, -25)
 cButton.BackgroundColor3 = Color3.new(0.8, 0.8, 0.8)
-cButton.Text = "Q"
+cButton.Text = "Q" --change the word to the letter you want
 cButton.Font = Enum.Font.SourceSans
 cButton.TextSize = 24
 cButton.Parent = frame
 
 cButton.MouseButton1Click:Connect(function()
     local vim = game:GetService("VirtualInputManager")
-    vim:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
+    vim:SendKeyEvent(true, Enum.KeyCode.Q, false, game) --change the word to the letter you want
 end)
 
 -- Create the close button (X button)
