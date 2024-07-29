@@ -54,4 +54,24 @@ cButton.MouseButton1Click:Connect(function()
   vim:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
 end)
 
+--make gui not die when reset
+
+-- Assuming 'gui' is your ScreenGui instance
 gui.ResetOnSpawn = false
+
+local player = game.Players.LocalPlayer
+
+local function onCharacterAdded(character)
+    -- Re-parent the ScreenGui to PlayerGui to ensure it persists
+    gui.Parent = player:WaitForChild("PlayerGui")
+end
+
+-- Connect the CharacterAdded event to the function
+player.CharacterAdded:Connect(onCharacterAdded)
+
+-- Ensure the GUI is set initially
+if player.Character then
+    onCharacterAdded(player.Character)
+else
+    player.CharacterAdded:Connect(onCharacterAdded)
+end
