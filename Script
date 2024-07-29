@@ -54,7 +54,4 @@ cButton.MouseButton1Click:Connect(function()
   vim:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
 end)
 
-local player = game.Players.LocalPlayer
-local screenGui = player:WaitForChild("PlayerGui"):WaitForChild("YourScreenGuiName")
-
-screenGui.ResetOnSpawn = false
+gui.ResetOnSpawn = false
