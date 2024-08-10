@@ -53,25 +53,33 @@ cButton.MouseButton1Click:Connect(function()
     vim:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
 end)
 
--- Key press event to toggle Q Gui
+-- Key press event to send the key press
 UserInputService.InputBegan:Connect(function(input, isProcessed)
     if isProcessed then return end
-    if input.KeyCode == Enum.KeyCode.Q then -- Key to toggle
+    if input.KeyCode == Enum.KeyCode.Q then -- Key to send
         local vim = game:GetService("VirtualInputManager")
         vim:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
     end
 end)
 
+-- Variable to track if the notification has been shown
+local notificationShown = false
+
 -- Chat command to kill the GUI
 player.Chatted:Connect(function(message)
     if message:lower() == "/e killgui" then
-        gui:Destroy()
-        -- Display notification
-        StarterGui:SetCore("SendNotification", {
-            Title = "Info";
-            Text = "Type /e killgui To Kill The Gui";
-            Duration = 15; -- 15 seconds notification
-        })
+        if gui then
+            gui:Destroy()
+            if not notificationShown then
+                -- Display notification
+                StarterGui:SetCore("SendNotification", {
+                    Title = "Info";
+                    Text = "GUI has been removed.";
+                    Duration = 15; -- 15 seconds notification
+                })
+                notificationShown = true
+            end
+        end
     end
 end)
 
