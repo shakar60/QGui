@@ -7,9 +7,9 @@ local player = Players.LocalPlayer
 
 -- Create the main ScreenGui
 local gui = Instance.new("ScreenGui")
-gui.Name = "QGui" -- Change the word to the letter you want
+gui.Name = "QGui" -- GUI name
 gui.ResetOnSpawn = false -- Ensure the GUI doesn't disappear on reset
-gui.Parent = CoreGui -- Set the GUI parent to CoreGui for the nicer look
+gui.Parent = CoreGui -- Set the GUI parent to CoreGui
 
 -- Create the main frame
 local frame = Instance.new("Frame")
@@ -29,36 +29,37 @@ UICornerOuter.CornerRadius = UDim.new(0, 20)
 UICornerOuter.Parent = frame
 
 -- Create the main button
-local cButton = Instance.new("TextButton")
-cButton.Name = "QButton" -- Change the word to the letter you want
-cButton.Size = UDim2.new(0, 180, 0, 60)
-cButton.Position = UDim2.new(0.5, -90, 0.5, -30)
-cButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Dark grey background
-cButton.BorderSizePixel = 0
-cButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
-cButton.Text = "Q Gui" -- Button text
-cButton.Font = Enum.Font.SourceSans
-cButton.TextSize = 24
-cButton.TextScaled = true -- Makes the text larger
-cButton.Parent = frame
+local qButton = Instance.new("TextButton")
+qButton.Name = "QButton" -- Button name
+qButton.Size = UDim2.new(0, 180, 0, 60)
+qButton.Position = UDim2.new(0.5, -90, 0.5, -30)
+qButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Dark grey background
+qButton.BorderSizePixel = 0
+qButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
+qButton.Text = "Q Gui" -- Button text
+qButton.Font = Enum.Font.SourceSans
+qButton.TextSize = 24
+qButton.TextScaled = true -- Makes the text larger
+qButton.Parent = frame
 
 -- Add rounded corners to the button
 local UICornerButton = Instance.new("UICorner")
 UICornerButton.CornerRadius = UDim.new(0, 10)
-UICornerButton.Parent = cButton
+UICornerButton.Parent = qButton
 
 -- Button click event
-cButton.MouseButton1Click:Connect(function()
+qButton.MouseButton1Click:Connect(function()
+    -- Simulate "Q" key press
     local vim = game:GetService("VirtualInputManager")
     vim:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
 end)
 
--- Key press event to send the key press
+-- Key press event to handle specific actions
 UserInputService.InputBegan:Connect(function(input, isProcessed)
     if isProcessed then return end
-    if input.KeyCode == Enum.KeyCode.Q then -- Key to send
-        local vim = game:GetService("VirtualInputManager")
-        vim:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
+    if input.KeyCode == Enum.KeyCode.Q then
+        -- Simulate button click
+        qButton:Click()
     end
 end)
 
@@ -86,6 +87,6 @@ end)
 -- Display notification when the GUI is created
 StarterGui:SetCore("SendNotification", {
     Title = "Info";
-    Text = "Type /e killgui To Kill The Gui";
+    Text = "Type /e killgui to kill the GUI.";
     Duration = 15; -- 15 seconds notification
 })
